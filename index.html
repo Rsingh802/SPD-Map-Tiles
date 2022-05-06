@@ -13,6 +13,27 @@
             padding: 0;
         }
 
+        .map-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background: rgba(255, 255, 255, 0.8);
+          border-style: solid;
+          border-width: 1px;
+          border-color: rgba(0, 0, 0, 0.2);
+          margin-left: 20px;
+          font-family: Arial, sans-serif;
+          overflow: auto;
+          border-radius: 3px;
+        }
+
+        #features {
+            top: 0;
+            height: 200px;
+            margin-top: 20px;
+            width: 320px;
+        }
+
         #map {
             position: absolute;
             top: 0;
@@ -26,7 +47,7 @@
             position: absolute;
             z-index: 1;
             top: 10px;
-            right: 10px;
+            right: 50px;
             border-radius: 3px;
             width: 120px;
             border: 1px solid rgba(0, 0, 0, 0.4);
@@ -72,6 +93,13 @@
 <body>
     <nav id="menu"></nav>
     <div id='map'></div>
+    <div class='map-overlay' id='features'>
+        <h2>SPP Sites</h2>
+        <div id='text-escription'>
+            <p>This map shows the location of Seattle Preschool Program Sites over the life of the program. Toggle different map layers with the menu on the right!</p>
+            <p style="text-align: right; font-size:10pt">Source: <a href="https://data.seattle.gov/Education/SPP-Sites/s395-hpj9">City of Seattle</a></p>
+        </div>
+    </div>
     <script type="text/javascript">
         mapboxgl.accessToken =
             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
@@ -79,8 +107,11 @@
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v10',
             zoom: 12, // starting zoom
-            center: [-122.2559435, 47.6002614] // starting center
+            center: [-122.3321, 47.6062] // starting center
         });
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
 
         map.on('load', () => { 
 
